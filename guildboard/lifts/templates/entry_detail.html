@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block sub_menu %}
+{% include "includes/entry_submenu.html" %}
+{% endblock %}
+
+{% block rt-panel %}
+{% with object as e %}
+{% include "includes/entry_content.html" %}
+{% endwith %}
+{% endblock %}

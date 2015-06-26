@@ -1,0 +1,37 @@
+{% extends "form.html" %}
+{% block sub_menu %}
+{% include "includes/people_menu.html" %}
+{% endblock %}
+
+{% block rt-panel %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">You are a member of the following gyms:</h3>
+  </div>
+  <div class="panel-body">
+    {% if gyms %}
+    {% for g in gyms %}
+    <p> This is a link to a gym!</p>
+    {% endfor %}
+    {% else %}
+    <p> No gyms found. 
+    {% endif %}
+  </div>
+</div>
+
+{% if owned_gyms %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">You own the following gyms:</h3>
+  </div>
+  <div class="panel-body">
+    {% for g in owned_gyms %}
+    <p><a href="#">{{ g.name }}</a></p>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+<div class="row">
+<div class="col-md-8">  
+{{ block.super }}
+{% endblock %}

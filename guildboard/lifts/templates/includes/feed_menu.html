@@ -1,0 +1,6 @@
+<div class="col-md-2">
+  <ul class="nav nav-pills nav-stacked">
+  <li role="presentation" {% if active == "gym" %}class="active"{% endif %}><a href="{% url 'lifts_feed_gym' %}">My Gym</a></li>
+  <li role="presentation" {% if active == "public" %}class="active"{% endif %}><a href="{% url 'lifts_feed_pub' %}">All Public Entries</a></li>
+</ul>
+</div>

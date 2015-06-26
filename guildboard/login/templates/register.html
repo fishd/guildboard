@@ -1,0 +1,76 @@
+{% load staticfiles %}
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guildboard | Welcome</title>
+    <link rel="stylesheet" href="{% static 'css/foundation.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/foundation-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <script src="{% static 'js/vendor/modernizr.js' %}"></script>
+  </head>
+  <body>
+    
+    <section class="active">
+      <!-- <p class="title" data-section-title><a href="#">Sign Up</a></p> -->
+      <div class="content" data-section-content>
+        <p>
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="signup-panel">
+                <p class="welcome">Hello, new user!</p>
+                <form action="{% url 'register' %}" method="post">
+		  {% csrf_token %}
+                  <div class="row collapse">
+                    <div class="small-2  columns">
+                      <span class="prefix"><i class="fi-torso"></i></span>
+                    </div>
+                    <div class="small-10  columns">
+		      {{ form.username }}
+                      <!-- <input type="text" placeholder="Full Name"> -->
+                    </div>
+                  </div>
+                  <div class="row collapse">
+                    <div class="small-2  columns">
+                      <span class="prefix"><i class="fi-torso"></i></span>
+                    </div>
+                    <div class="small-10  columns">
+		      {{ form.first_name }}
+                      <!-- <input type="text" placeholder="Full Name"> -->
+                    </div>
+                  </div>
+                  <div class="row collapse">
+                    <div class="small-2  columns">
+                      <span class="prefix"><i class="fi-torso"></i></span>
+                    </div>
+                    <div class="small-10  columns">
+		      {{ form.last_name }}
+                      <!-- <input type="text" placeholder="Full Name"> -->
+                    </div>
+                  </div>
+                  <div class="row collapse">
+                    <div class="small-2 columns">
+                      <span class="prefix"><i class="fi-mail"></i></span>
+                    </div>
+                    <div class="small-10  columns">
+		      {{ form.email }}
+                      <!-- <input type="text" placeholder="Email"> -->
+                    </div>
+                  </div>
+                  <div class="row collapse">
+                    <div class="small-2 columns ">
+                      <span class="prefix"><i class="fi-lock"></i></span>
+                    </div>
+                    <div class="small-10 columns ">
+		      {{ form.password }}
+                      <!-- <input type="text" placeholder="Password"> -->
+                    </div>
+                  </div>
+                <input type="submit"  class="button " value="Sign up!">
+                </form>
+              </div>
+            </div>
+           </div></p>
+      </div>
+    </section>
