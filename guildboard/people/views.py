@@ -1,15 +1,20 @@
+import datetime
 import operator
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.views.generic import ListView, TemplateView, View
 from django.views.generic.edit import FormView
 from django.db.models import Q
 from django.core.urlresolvers import reverse_lazy
-from people.models import Gym, Federation, Lifter
-from people import forms
+
 from guildboard.forms import DivErrorList
 from guildboard.views import LoginRequiredView
+
+from people.models import Gym, Federation, Lifter, JoinGymRequest
+from people import forms
+
 
 def edit_account(request):
     # form_class = forms.AccountForm
@@ -27,7 +32,7 @@ def edit_account(request):
             request.user.last_name = form.cleaned_data['last_name']
             request.user.email = form.cleaned_data['email']
             request.user.save()
-    
+
     form = forms.AccountForm(
         initial={
             'email': request.user.email,
@@ -52,13 +57,29 @@ def edit_account(request):
 
 class JoinGym(LoginRequiredView, FormView):
     form_class = forms.JoinGymForm
-    template_name= "join_gym.html"
+    template_name = "join_gym.html"
+    success_url = reverse_lazy("acct_edit")
+
+    def form_valid(self, form):
+        gym = form.cleaned_data['gym']
+        requestor = self.request.user.lifter.displayname
+        request = JoinGymRequest(
+            timestamp=datetime.datetime.now(),
+            short_title="%s has requested to join %s." %
+            (requestor, gym.name),
+            gym=gym,
+            initiating_user=self.request.user.lifter
+        )
+        request.save()
+        messages.info(self.request, "Your request has been sent.")
+        return super(JoinGym, self).form_valid(form)
+
 
 class CreateGym(LoginRequiredView, FormView):
     form_class = forms.CreateGymForm
-    template_name= "create_gym.html"
+    template_name = "create_gym.html"
     success_url = reverse_lazy("acct_edit")
-    
+
     def form_valid(self, form):
         form.process(self.request)
         return super(CreateGym, self).form_valid(form)
@@ -73,6 +94,7 @@ class CreateGym(LoginRequiredView, FormView):
         # todo: figure out why this won't fucking work
         kwargs['error_class'] = DivErrorList
         return kwargs
+
 
 class CreateFederation(LoginRequiredView, View):
     pass
