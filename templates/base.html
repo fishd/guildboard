@@ -60,7 +60,13 @@
     <div class="container">
 
       <h1>{% block page_title %}Home{% endblock page_title %}</h1>
-      
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+	    <p>{{ message }}</p>
+      </div>
+      {% endfor %}
+      {% endif %}
       {% block content %}
       <div class="row">
 	{% block sub_menu %}
