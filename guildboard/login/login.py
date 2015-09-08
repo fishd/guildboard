@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response, render
 from django.forms.forms import NON_FIELD_ERRORS
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-
+from people.models import Lifter
 from .form import LoginForm, RegistrationForm
 
 def register(request):
@@ -21,9 +21,10 @@ def register(request):
             user = User.objects.create_user(username, email, password)
             user.save()
 
-        except:
-            pass
+        except Exception as e:
+            raise(e)
         else:
+            Lifter(user=user).save()
             user.first_name = fname
             user.last_name = lname
             user.save()
