@@ -19,17 +19,14 @@ class AccountForm(forms.Form):
     bio = char_field
     location = char_field()
     first_name = char_field()
-    last_name = char_field()    
+    last_name = char_field()
 
 
 class JoinGymForm(forms.Form):
-    gym = choice_field(placeholder="Search for a gym")
+    gym = model_choice_field(
+        queryset=Gym.objects.all(),
+        placeholder="Search for a gym")
 
-    def __init__(self, *args, **kwargs):
-        super(JoinGymForm, self).__init__(*args, **kwargs)
-        self.fields['gym'].choices= [
-            (gym.pk, gym.name) for gym in Gym.objects.all()
-        ]
 
 class CreateGymForm(forms.Form):
     name = char_field()
@@ -61,4 +58,3 @@ class CreateGymForm(forms.Form):
         gym.owners = initial_people
         gym.lifters = initial_people[::]
         gym.save()
-        
