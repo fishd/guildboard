@@ -2,12 +2,30 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Notification(models.Model):
+    timestamp = models.DateTimeField()
+    short_title = models.CharField(max_length=200)
+    detailed_content = models.TextField()
+    active = models.BooleanField(default=True)
+    related_users = models.ManyToManyField(
+        'Lifter', related_name="notifications"
+    )
+
+    def __str__(self):
+        return self.short_title
+
+
+class JoinGymRequest(Notification):
+    initiating_user = models.ForeignKey('Lifter')
+    gym = models.ForeignKey('Gym')
+
+
 class Lifter(models.Model):
 
     user = models.OneToOneField(User)
     # bio
     # location
-    
+
     # lifter.entry_set
     # lifter.competitive_federations
     # lifter.owned_federations
@@ -23,13 +41,16 @@ class Lifter(models.Model):
     def __str__(self):
         return self.user.username
 
-    @property
-    def PRs(self):
-        max_squat = self.records.filter(lift_type="Squat").order_by(weight)[-1]
-        PRs = {}
-        
-                
+    # @property
+    # def PRs(self):
+    #     max_squat = self.records.filter(lift_type="Squat").order_by("weight")[-1]
+    #     PRs = {}
 
+    @property
+    def displayname(self):
+        return "%s %s" % (self.user.first_name, self.user.last_name)
+
+o
 class Federation(models.Model):
     name = models.CharField(max_length=200)
     acronym = models.CharField(max_length=30)
@@ -61,6 +82,3 @@ class Gym(models.Model):
 
     def __str__(self):
         return self.name
-
-class Notification(models.Model):
-    pass
