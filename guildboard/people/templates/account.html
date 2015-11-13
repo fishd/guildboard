@@ -11,7 +11,7 @@
   <div class="panel-body">
     {% if gyms %}
     {% for g in gyms %}
-    <p> This is a link to a gym!</p>
+    <p><a href="#">{{ g.name }}</a></p>
     {% endfor %}
     {% else %}
     <p> No gyms found. 
