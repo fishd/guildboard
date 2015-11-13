@@ -4,8 +4,6 @@ from guildboard.forms import (
     url_field,
     email_field,
     choice_field,
-    int_field,
-    boolean_field,
     model_choice_field
 )
 from django import forms
@@ -41,7 +39,7 @@ class CreateGymForm(forms.Form):
         required=False,
         placeholder="e.g. 1234 Swole Street"
     )
-    city = char_field()
+    city = char_field(required=False)
     state = char_field(
         label="State, Province, or Region",
         placeholder="e.g. Kansas"
