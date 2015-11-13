@@ -50,7 +50,7 @@ class Lifter(models.Model):
     def displayname(self):
         return "%s %s" % (self.user.first_name, self.user.last_name)
 
-o
+
 class Federation(models.Model):
     name = models.CharField(max_length=200)
     acronym = models.CharField(max_length=30)
