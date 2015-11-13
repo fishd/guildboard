@@ -17,17 +17,17 @@ class Entry(models.Model):
     time_posted = models.DateTimeField()
     post_title = models.CharField(max_length=200)
 
-    def generate_title(self):
-        title = "{first} {last} - {lift_type}: {weight} x {reps}"
+    def save(self):
+        title = "{username} - {lift_type}: {weight} x {reps}"
         related_user = self.lifter.user
         record = self.record
-        return title.format(
-            first=related_user.first_name,
-            last=related_user.last_name,
+        self.post_title = title.format(
+            username=related_user.username,
             lift_type=record.lift_type,
             weight=record.weight,
             reps=record.reps
-        )    
+        )
+        super(Entry, self).save()
 
     def get_absolute_url(self):
         return "entries/{0}".format(self.id)
