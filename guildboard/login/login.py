@@ -1,12 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render
 from django.forms.forms import NON_FIELD_ERRORS
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+
 from people.models import Lifter
 from .form import LoginForm, RegistrationForm
+
 
 def register(request):
     if request.method == "POST":
@@ -28,7 +29,7 @@ def register(request):
             user.first_name = fname
             user.last_name = lname
             user.save()
-        return HttpResponseRedirect(reverse("main"))
+        return HttpResponseRedirect(reverse("lifts"))
     else:
         form = RegistrationForm()
 
@@ -38,18 +39,19 @@ def register(request):
         {"form": form}
     )
 
+
 def login_view(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         form.full_clean()
         username = request.POST['username']
         password = request.POST['password']
-        
+
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             # Redirect to a success page.
-            return HttpResponseRedirect(reverse("main"))
+            return HttpResponseRedirect(reverse("lifts"))
         else:
             # Return an 'invalid login' error message.
             form.errors[NON_FIELD_ERRORS] = form.error_class(
@@ -59,7 +61,7 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, "login.html", {'form': form})
-        
+
 
 def logout_view(request):
     logout(request)
