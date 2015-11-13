@@ -43,10 +43,9 @@
           <a class="navbar-brand" href="#">guildboard</a>
         </div>
         <div class="collapse navbar-collapse">
-	  <div class="navbar-text">Welcome, {{ request.user.username }}!</div>
+	  <!-- <div class="navbar-text">Welcome, {{ request.user.username }}!</div> -->
 
           <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
             <li><a href="{% url 'lifts' %}">Feed</a></li>
             <li><a href="{% url 'lifts_manage' %}">My Entries</a></li>
             <li><a href="{% url 'records' %}">Records</a></li>
