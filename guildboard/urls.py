@@ -11,7 +11,6 @@ urlpatterns = patterns(
     url(r'^register/$', 'login.login.register',  name='register'),
     url(r'^login/$', 'login.login.login_view', name='login-specific',),
     url(r'^logout/$', 'login.login.logout_view', name='logout'),
-    url(r'^home/$', 'views.main', name="main"),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
