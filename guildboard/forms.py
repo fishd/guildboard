@@ -14,18 +14,23 @@ class DivErrorList(ErrorList):
     def as_divs(self):
         if not self:
             return ''
-        return ('<div class="danger">%s</div>' %
-                ''.join(['<div class="danger">%s</div>' % e for e in self]))
+        return ('<div class="form_error">%s</div>' %
+                ''.join(['<p class="text-danger bg-danger">%s</p>' %
+                        e for e in self]))
+
 
 def text_field(**kwargs):
     return forms.CharField(
         widget=forms.widgets.Textarea(
-            attrs={'class': 'form-control',
-                    'placeholder': kwargs.pop('placeholder', '')
+            attrs={
+                'class': 'form-control',
+                'placeholder': kwargs.pop('placeholder', '')
             }
         ),
         **kwargs
     )
+
+
 def char_field(**kwargs):
     return forms.CharField(
         widget=forms.widgets.TextInput(
@@ -36,14 +41,26 @@ def char_field(**kwargs):
         **kwargs
     )
 
-    
+
 def email_field(**kwargs):
     return forms.EmailField(
         widget=forms.widgets.Textarea(
+
+
+
+
+
+
+
+
+
+
+
             attrs={'class': 'form-control'}
         ),
         **kwargs
     )
+
 
 def url_field(**kwargs):
     return forms.URLField(
@@ -52,6 +69,7 @@ def url_field(**kwargs):
         ),
         **kwargs
     )
+
 
 def model_choice_field(**kwargs):
     return forms.ModelChoiceField(
@@ -62,6 +80,7 @@ def model_choice_field(**kwargs):
         ),
         **kwargs
     )
+
 
 def choice_field(**kwargs):
     return forms.ChoiceField(
@@ -73,6 +92,7 @@ def choice_field(**kwargs):
         **kwargs
     )
 
+
 def int_field(**kwargs):
     return forms.IntegerField(
         widget=forms.widgets.NumberInput(
@@ -81,20 +101,11 @@ def int_field(**kwargs):
         **kwargs
     )
 
+
 def boolean_field(**kwargs):
     return forms.BooleanField(
         widget=forms.widgets.CheckboxInput(
             attrs={}
-        ),
-        **kwargs
-    )
-
-def model_choice_field(**kwargs):
-    return forms.ModelChoiceField(
-        widget=forms.widgets.Select(
-            attrs={
-                'class': 'form-control select2',
-                'placeholder': kwargs.pop('placeholder', '')}
         ),
         **kwargs
     )
