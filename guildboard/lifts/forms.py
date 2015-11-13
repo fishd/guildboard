@@ -7,18 +7,16 @@ from records.models import Record
 from guildboard.forms import (
     text_field,
     model_choice_field,
-    char_field,
     url_field,
-    email_field,
     choice_field,
     int_field,
     boolean_field,
 )
 
-    
+
 class EntryForm(forms.Form):
     entry_fields = ['gym', 'visible', 'video_link', 'image_link', 'comments']
-    record_fields = ['lift_type', 'weight','unit', 'reps', 'gym']
+    record_fields = ['lift_type', 'weight', 'unit', 'reps', 'gym']
 
     gym = model_choice_field(queryset=None)
     visible = boolean_field(
@@ -35,16 +33,16 @@ class EntryForm(forms.Form):
     video_link = url_field(required=False)
     image_link = url_field(required=False)
     comments = text_field(required=False)
-    
 
     def __init__(self, **kwargs):
         lifter = kwargs.pop("lifter")
 
         super(EntryForm, self).__init__(**kwargs)
-        self.fields['gym'].queryset = lifter.associated_gyms
-        
+        self.fields['gym'].queryset = lifter.associated_gyms.all()
+
     def edit_existing_entry(self, instance):
         pass
+
     def record_entry(self, lifter):
         cleaned_data = self.cleaned_data
 
@@ -61,8 +59,4 @@ class EntryForm(forms.Form):
         entry.time_posted = datetime.datetime.now()
         entry.lifter = lifter
         entry.record = record
-        entry.post_title = entry.generate_title()
         entry.save()
-
-
-            
