@@ -1,11 +1,13 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import GymRecords
-urlpatterns = patterns(
-    'records',
+
+RECORDS_PREFIX = "records"
+urlpatterns = [
     url(
-        r'^records/gym$', 
+        r'^records/gym$',
         GymRecords.as_view(),
-        name="records", 
+        name="records",
+        prefix=RECORDS_PREFIX
     ),
-)
+]
