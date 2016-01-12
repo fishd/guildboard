@@ -2,8 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+   <link rel="shortcut icon" type="image/png" 
+          href="{% static 'images/favicon.ico' %}"/>
     <meta charset="utf-8">
-    <title>{% block title %}guildboard{% endblock title %}</title>
+    <title>{% block title %}Strength Guild Iron Open{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -23,10 +25,10 @@
     <![endif]-->
 
     <!-- This file store project specific CSS -->
-    <link href="{% static 'css/guildboard.css' %}" rel="stylesheet">
+    <link href="{% static 'css/ironopen.css' %}" rel="stylesheet">
 
     <!-- Use this to quickly test CSS changes in a template,
-        then move to guildboard.css -->
+        then move to ironopen.css -->
     {% block extra_css %}{% endblock extra_css %}
   </head>
 
@@ -40,15 +42,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">guildboard</a>
+          <a class="navbar-brand" href="{% url 'home' %}">Strength Guild Iron Open</a>
         </div>
         <div class="collapse navbar-collapse">
 	  <!-- <div class="navbar-text">Welcome, {{ request.user.username }}!</div> -->
 
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'lifts' %}">Feed</a></li>
-            <li><a href="{% url 'lifts_manage' %}">My Entries</a></li>
-            <li><a href="{% url 'records' %}">Records</a></li>
+            <li><a href="{% url 'records' %}">Leaderboard</a></li>
             <li><a href="{% url 'acct_edit' %}">My Account</a></li>
             <li><a href="{% url 'logout' %}">Log out</a></li>
           </ul>
@@ -56,6 +56,7 @@
       </div>
     </div>
 
+    {% block main_container %}
     <div class="container">
 
       <h1>{% block page_title %}Home{% endblock page_title %}</h1>
@@ -80,13 +81,21 @@
 	</div>
       {% endblock content %}
     </div> <!-- /container -->
-
+      {% endblock main_container %}
+      <footer class="footer">
+	<div class="container">
+	  <div class="row">
+	    <p class="text-center">Copyright 2016. All rights reserved.</p>
+	    <p class="text-center"><a href="#">Terms and conditions</a></p>
+	  </div>
+	</div>
+      </footer>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/select2.min.js' %}"></script>
     <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
     <!-- place project specific Javascript in this file -->
-    <script src="{% static 'js/guildboard.js' %}"></script>
+    <script src="{% static 'js/ironopen.js' %}"></script>
 
     {% block extra_js %}{% endblock extra_js %}
   </body>
