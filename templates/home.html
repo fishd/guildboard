@@ -1,14 +1,84 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
-<div class="col-md-8 well">
-  <p> an example entry </p>
-</div>  
-<div class="col-md-8 well">
-  <p> an example entry </p>
-</div>  
-<div class="well">
-  <p> an example entry </p>
-</div>  
-<div class="col-md-4">
-  <p> sidebar? </p>
-</div>  
+{% block main_container %}
+<div class="jumbotron barbelltron">
+  <div class="container">
+      <h1 class="yellow-text"> Strength Guild Barbell Open</h1>
+    <p class="lead yellow-text">The world's first online powerlifting, weightlifting, and supertotal competition</p>
+    </div>
+ </div>
+
+<div class="container competitions">
+  <div class="row">
+    <div class="col-lg-4">
+      <img class="img-responsive center-block img-thumbnail" height="140" width="140" src={% static "images/powerlifting.jpg" %}>
+      <!-- <svg width="140" height="140" xmlns="http://www.w3.org/2000/svg"> -->
+      <!-- 	<rect  width="140" height="140" fill="#EEEEEE">Image here</rect> -->
+      <!-- </svg> -->
+      <h2 class="text-center">Powerlifting</h2>
+      <p class="text-center">Squat, bench, deadlift. Some catchy marketing stuff here.</p>
+    </div>
+    <div class="col-lg-4">
+      <img class="img-responsive img-thumbnail center-block" height="140" width="140" src={% static "images/snatch.jpg" %}>
+      <h2 class="text-center">Weightlifting</h2>
+      <p class="text-center">Snatch and clean and jerk. Exciting tagline</p>
+    </div>
+    <div class="col-lg-4">
+      <img class="img-responsive img-thumbnail center-block" height="140" width="140" src={% static "images/hulk.jpg" %}>
+      <h2 class="text-center">Supertotal</h2>
+      <p class="text-center">Squat, bench, deadlift, snatch, AND clean and jerk!</p>
+    </div>
+  </div>
+</div>
+
+<hr class"featurette-divider">
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">A competition for something something words here</h2>
+      <p>Some catchy marketing stuff here.</p>
+      <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec hendrerit tempor tellus. Donec pretium posuere tellus. Proin quam nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla posuere. Donec vitae dolor. Nullam tristique diam non turpis. Cras placerat accumsan nulla. Nullam rutrum. Nam vestibulum accumsan nisl.</p>
+      <a class="btn btn-default" href="#" role="button">View Leaderboard</a>
+    </div>
+    <div class="col-md-5">
+      <img class="img-responsive" src={% static "images/oly.jpg" %}>
+    </div>
+  </div>
+</div>
+
+<hr class"featurette-divider">
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <img src={% static "images/phil.jpg"%} height="75%" width="75%">
+
+    </div>
+    <div class="col-md-7">
+      <h2 class="featurette-heading">About Strength Guild</h2>
+      <p>CFC NBIC Al Qaida Fusion Center satellite imagery military Whitehouse
+	FSF Clinton Pretoria Outbreak Air borne Becker Abu Sayyaf</p>
+      <p>Conficker Screening Illegal immigrants Goodwin Peering GPMG SIGDEV
+	USAFA Oscor RX-7 Capricorn sweep BVD Cyber attack Brown out</p>
+        <p><a href="#" class="btn btn-default" role="button">Contact Us</a>
+    </div>
+  </div>
+</div>
+<hr class"featurette-divider">
+<!-- <div class="row"> -->
+<!--   <div class="col-sm-6 col-md-4"> -->
+<!--     <div class="thumbnail"> -->
+<!--       <img src="..." alt="..."> -->
+<!--       <div class="caption"> -->
+<!--         <h3>Thumbnail label</h3> -->
+<!--         <p>...</p> -->
+<!--         <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
+
+
+{% endblock %}
