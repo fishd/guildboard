@@ -49,8 +49,13 @@
 
           <ul class="nav navbar-nav">
             <li><a href="{% url 'records' %}">Leaderboard</a></li>
+	    {% if request.user.is_authenticated %}
             <li><a href="{% url 'acct_edit' %}">My Account</a></li>
             <li><a href="{% url 'logout' %}">Log out</a></li>
+	    {% else %}
+            <li><a href="{% url 'login' %}">Log in</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+	    {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -1,44 +1,39 @@
-.center.row {
-	height: 300px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 5%;
-	max-width: 500px;
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-.signup-panel {
+.form-signin {
+  max-width: 330px;
   padding: 15px;
+  margin: 0 auto;
 }
-
-.signup-panel i {
-  font-size: 30px;
-  line-height: 50px;
-  color: #999;
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
 }
-
-.signup-panel form input, .signup-panel form span {
-  height: 50px;
+.form-signin .checkbox {
+  font-weight: normal;
 }
-
-.signup-panel .welcome {
-  font-size: 26px;
-  text-align: center;
-  margin-left: 0;
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
 }
-
-.signup-panel .button {
-  margin-left: 35%;
+.form-signin .form-control:focus {
+  z-index: 2;
 }
-
-section.active {
-	padding-top: 75px !important;
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
-
-p.title {
-	border-bottom: 1px solid #cccccc !important;
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
-
-.content{
-	height: 450px;
-}
-              
