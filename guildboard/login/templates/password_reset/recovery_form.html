@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block rt-panel-content %}
+<form  method="post">
+  {% csrf_token %}
+  {{ form.as_p|bootstrap_me }}
+  <input type="submit" action="{{ request.path }}" class="btn btn-default" value="Submit"/>
+</form>
+
+{% endblock %}

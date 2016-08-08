@@ -1,0 +1,28 @@
+<table class="datatable">
+  <thead>
+    <tr>
+      <th>Lifter</th>
+      <th>Squat</th>
+      <th>Bench</th>    
+      <th>Deadlift</th>
+      <th>Snatch</th>
+      <th>Clean and Jerk</th>
+      <th>Front Squat</th>
+      <th>Push Press</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for l in lifters %}
+  <tr>
+    <td>{{ l.displayname }}</td>
+    <td>{{ l.squat }}</td>
+    <td>{{ l.bench }}</td>
+    <td>{{ l.deadlift }}</td>
+    <td>{{ l.snatch }}</td>
+    <td>{{ l.clean_jerk }}</td>
+    <td>{{ l.front_squat }}</td>
+    <td>{{ l.push_press }}</td>
+  </tr>
+  {% endfor %}
+ </tbody>
+</table>

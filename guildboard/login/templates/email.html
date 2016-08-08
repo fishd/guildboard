@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+{% block sub_menu %}
+{% endblock sub_menu%}
+
+{% block main_container %}
+<div class="container">
+<h3 class="text-center">Registration is now open!</h3>
+<p class="lead text-center">To register for a competition, first <a href="{% url 'register' %}">create an account</a>, or <a href="{% url 'login' %}">log in</a> if you've already done so.<p>
+</div>
+
+<hr></hr>
+<div class="container">
+
+  <div class="row">
+  <p class="text text-center"> Don't want to make an account just yet, but want to stay in touch? Sign up for our newsletter! </p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form action="//ironopen.us12.list-manage.com/subscribe/post?u=6181fe4f2ad44c135dda3a4a2&amp;id=da4cfed53a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" action="{{ request.path }}" class="btn btn-default" value="Submit"/>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+</div>
+
+<hr></hr>
+{% endblock main_container %}

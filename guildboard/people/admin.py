@@ -1,12 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import Gym, Lifter,Notification
+from .models import Lifter
 
-admin.site.register(Gym)
 admin.site.register(Lifter)
-# admin.site.register(Federation)
-admin.site.register(Notification)
 
 
 class LifterInline(admin.StackedInline):

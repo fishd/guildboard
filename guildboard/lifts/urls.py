@@ -1,11 +1,6 @@
 from django.conf.urls import url
 from django.views.generic import TemplateView
-from lifts.feed_views import (
-    GymEntryList,
-    FederationEntryList,
-    PublicEntryList,
-)
-from lifts.entry_views import (
+from lifts.views import (
     MyEntryList,
     edit_an_entry,
     EntryDetail,
@@ -13,33 +8,20 @@ from lifts.entry_views import (
 )
 
 
-LIFT_PREFIX = "lifts"
+from lifts.record_views import GymRecords
+
+RECORDS_PREFIX = "records"
 urlpatterns = [
     url(
-        r'^feed$',
-        GymEntryList.as_view(),
-        name="lifts",
-        prefix=LIFT_PREFIX
+        r'^records/$',
+        GymRecords.as_view(),
+        name="records",
+        prefix=RECORDS_PREFIX
     ),
-    url(
-        r'^feed/gym/$',
-        GymEntryList.as_view(),
-        name="lifts_feed_gym",
-        prefix=LIFT_PREFIX
-    ),
-    url(
-        r'^feed/federation/$',
-        FederationEntryList.as_view(),
-        name="lifts_feed_fed",
-        prefix=LIFT_PREFIX
-    ),
-    url(
-        r'^feed/all/$',
-        PublicEntryList.as_view(),
-        name="lifts_feed_pub",
-        prefix=LIFT_PREFIX
-    ),
+]
 
+LIFT_PREFIX = "lifts"
+urlpatterns += [
     url(
         r'^manage$',
         MyEntryList.as_view(),

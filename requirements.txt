@@ -1,0 +1,23 @@
+* Users
+** Account registration
+*** Activation
+*** Password recovery
+** Post PR
+*** Push notification to pi?
+** Edit PR
+** View PR
+*** Embed instagram or youtube
+** View records
+*** Datatable sort
+*** Link to PR detail page
+
+
+* Pi
+** View records
+*** Plain table, no user interaction
+*** If can't fit everyone on screen, paginate
+*** Pagination must automatically flip back and forth
+*** Must refresh periodically or listen for updates (SOCKEEEETS)
+
+
+* combine record and entry models.

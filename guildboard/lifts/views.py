@@ -11,14 +11,13 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import FormView
 from django.db.models import Q
 
-from people.models import Gym, Federation
 
-from guildboard.views import LoginRequiredView
-from lifts import forms
+from django.contrib.auth.mixins import LoginRequiredMixin
+from lifts.forms import EntryForm
 from lifts.models import Entry
 
 
-class MyEntryList(LoginRequiredView, ListView):
+class MyEntryList(LoginRequiredMixin, ListView):
     context_object_name = 'entries'
     template_name = 'edit_entries.html'
 
@@ -33,24 +32,19 @@ class MyEntryList(LoginRequiredView, ListView):
         return self.request.user.lifter.entry_set.all()
 
 
-class EntryDetail(LoginRequiredView, DetailView):
+class EntryDetail(LoginRequiredMixin, DetailView):
     template_name = 'entry_detail.html'
     model = Entry
 
-class CreateEntry(LoginRequiredView, FormView):
+class CreateEntry(LoginRequiredMixin, FormView):
     context_object_name = 'entry'
     template_name = 'create_entry.html'
-    form_class = forms.EntryForm
+    form_class = EntryForm
     success_url = reverse_lazy("lifts_manage")
 
     def form_valid(self, form):
         form.record_entry(self.request.user.lifter)
         return super(CreateEntry, self).form_valid(form)
-
-    def get_form_kwargs(self):
-        kwargs = super(CreateEntry, self).get_form_kwargs()
-        kwargs['lifter'] = self.request.user.lifter
-        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super(CreateEntry, self).get_context_data(**kwargs)
@@ -58,7 +52,7 @@ class CreateEntry(LoginRequiredView, FormView):
         return context
 
 
-# class EditEntry(LoginRequiredView, FormView):
+# class EditEntry(LoginRequiredMixin, FormView):
 #     context_object_name = 'entry'
 #     template_name = 'edit_entry.html'
 #     form_class = forms.EntryForm
@@ -86,7 +80,8 @@ def edit_an_entry(request, entry_id):
     else:
         if request.method == "POST":
             form = forms.EntryForm(request.POST)
-            form.edit_existing_entry(entry)
+            if form.is_valid():
+                form.edit_existing_entry(entry)
     
             return HttpResponseRedirect(reverse_lazy("lifts_edit"))
 
@@ -99,7 +94,6 @@ def edit_an_entry(request, entry_id):
 
             form = forms.EntryForm(
                 initial=initial_values,
-                lifter=request.user.lifter
             )
 
             return render(

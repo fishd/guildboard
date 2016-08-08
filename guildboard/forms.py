@@ -24,8 +24,20 @@ def text_field(**kwargs):
         widget=forms.widgets.Textarea(
             attrs={
                 'class': 'form-control',
+                'rows': '3',
                 'placeholder': kwargs.pop('placeholder', '')
             }
+        ),
+        **kwargs
+    )
+
+
+def password_field(**kwargs):
+    return forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': kwargs.pop('placeholder', '')}
         ),
         **kwargs
     )
@@ -44,19 +56,11 @@ def char_field(**kwargs):
 
 def email_field(**kwargs):
     return forms.EmailField(
-        widget=forms.widgets.Textarea(
-
-
-
-
-
-
-
-
-
-
-
-            attrs={'class': 'form-control'}
+        widget=forms.widgets.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': kwargs.pop('placeholder', '')
+            }
         ),
         **kwargs
     )
@@ -65,7 +69,10 @@ def email_field(**kwargs):
 def url_field(**kwargs):
     return forms.URLField(
         widget=forms.widgets.URLInput(
-            attrs={'class': 'form-control'}
+            attrs={
+                'class': 'form-control',
+                'placeholder': kwargs.pop('placeholder', '')
+            }
         ),
         **kwargs
     )
@@ -93,10 +100,37 @@ def choice_field(**kwargs):
     )
 
 
+def decimal_field(**kwargs):
+    return forms.DecimalField(
+        decimal_places=2,
+        widget=forms.widgets.NumberInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': kwargs.pop('placeholder', '')
+            }
+        ),
+        **kwargs
+    )
+
 def int_field(**kwargs):
     return forms.IntegerField(
         widget=forms.widgets.NumberInput(
-            attrs={'class': 'form-control'}
+            attrs={
+                'class': 'form-control',
+                'placeholder': kwargs.pop('placeholder', '')
+            }
+        ),
+        **kwargs
+    )
+
+
+def date_field(**kwargs):
+    return forms.DateField(
+        widget=forms.widgets.DateInput(
+            attrs={
+                'class': 'form-control datepicker',
+                'placeholder': kwargs.pop('placeholder', '')
+            }
         ),
         **kwargs
     )

@@ -1,66 +1,16 @@
-{% load staticfiles %}
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Guildboard | Welcome</title>
-    <link rel="stylesheet" href="{% static 'css/foundation.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/foundation-icons.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
-    <script src="{% static 'js/vendor/modernizr.js' %}"></script>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/foundation.min.js' %}"></script>
-    <script>
-      $(document).foundation();
-    </script>
-  </head>
-  <body>
-    
-<div class="center row">
-      <div class="large-12 large-centered columns">
-        <h1>Welcome to the Guild Board</h1>
-      </div>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+      {% include 'includes/notification.html' %}
+      <form class="form-signin" action="{% url 'login' %}" method="post">
+        <h2 class="text-center form-signin-heading">Please sign in</h2>
+	{% csrf_token %}
+	{{ form.as_p }}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	  </form>
 
-    <section>
-      <div class="content" data-section-content>
-        <p>
-          <div class="row">
-            <div class="large-12 columns">
-              <div class="signup-panel">
-                <form action="{% url 'login' %}" method="post">
-		  {% csrf_token %}
-		  {{ form.non_field_errors }}
-
-                  <div class="row collapse">
-                    <div class="small-2 columns">
-                      <span class="prefix"><i class="fi-mail"></i></span>
-                    </div>
-                    <div class="small-10  columns">
-		      {{ form.username.errors }}
-		      {{ form.username }}
-                    </div>
-                  </div>
-                  <div class="row collapse">
-                    <div class="small-2 columns ">
-                      <span class="prefix"><i class="fi-lock"></i></span>
-                    </div>
-                    <div class="small-10 columns ">
-		      {{ form.password.errors }}
-		      {{ form.password }}
-                    </div>
-                  </div>
-                <input type="submit" class="button" value="Log in">
-                </form>
-		<div class="small-3 small-centered column">
-		  <a href="{% url 'register' %}">Register</a>
-		</div>
-              </div>
-            </div>
-           </div></p>
-      </div>
-    </section>
-  </div>
-<div>              
-  </body>
-</html>
+      <hr>
+      <p> Forgot your password? Reset it <a href="{% url 'password_reset_recover' %}">here.</a></p>
+    </div>
+    <hr>
+{% endblock %}

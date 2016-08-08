@@ -2,6 +2,7 @@
   <ul class="nav nav-pills nav-stacked">
   <li role="presentation" {% if active == "acct" %} class="active"{% endif %}><a href="{% url 'acct_edit' %}">Edit my account</a></li>
   <li role="presentation" {% if active == "create_gym" %} class="active"{% endif %}><a href="{% url 'gym_create' %}">Create a Gym</a></li>
+
   <li role="presentation"><a href="{% url 'join_gym' %}">Request to join a gym!</a></li>
 </ul>
 </div>

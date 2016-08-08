@@ -196,9 +196,9 @@ DJANGO_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    'lifts',
+    'login',
     'people',
-    'records'
+    'lifts',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -250,3 +250,6 @@ WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 INSTALLED_APPS += (
 )
 ########## END SOUTH CONFIGURATION
+
+# LOGIN_REDIRECT_URL = "/auth/login/"
+LOGIN_URL = "/auth/login/"

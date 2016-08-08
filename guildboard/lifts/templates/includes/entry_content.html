@@ -1,14 +1,24 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      {{ e.post_title }}
-    </h3>
-    <h1 class="panel-title">{{ e.time_posted }}</h1>
-    {% if edit %}
-    <h1 class="panel-title"><span class="glyphicon glyphicon-edit"/><a href="{% url 'lifts_edit_entry' e.id %}">Edit</a></h1>
-    {% endif %}
-  </div>
-    <div class="panel-body">
-      {{ e.comments }}
-    </div>
-</div>
+<table class="datatable">
+  <thead>
+    <tr>
+      <th>Edit</th>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Weight</th>    
+      <th>Reps</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for e in entries %}
+  {% with e.record as r %}
+  <tr>
+    <td><p><a href="{% url 'lifts_edit_entry' e.id %}"><span class="glyphicon glyphicon-edit"/></a></p></td>
+    <td>{{ e.formatted_date }}</td>
+    <td>{{ r.lift_type }}</td>
+    <td>{{ r.weight }} pounds</td>
+    <td>{{ r.reps }}</td>
+  </tr>
+  {% endwith %}
+  {% endfor %}
+ </tbody>
+</table>
